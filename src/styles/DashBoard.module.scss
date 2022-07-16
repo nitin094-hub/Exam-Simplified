@@ -1,0 +1,96 @@
+.dashBoardContainer {
+  
+  .dashBoardHead {
+    display: flex;
+    align-items: center;
+    padding: 1.6rem 0;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    h2 {
+      margin: 0;
+      font-weight: 700;
+    }
+  }
+  .dashBoardProfile {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    a {
+      color: black;
+      font-weight: 700;
+    }
+  }
+  .dashBoardContent {
+    display: flex;
+    margin-top: 1rem;
+    gap: 0.6rem;
+    .dashBoardProfileDetails {
+      padding: 0.6rem 0.8rem;
+      flex-basis: 50%;
+      background-color: white;
+      .dashBoardProfileDetailsHead {
+        font-weight: 600;
+        margin: 0;
+      }
+      .dashBoardProfileDetailsContentContainer {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1.5rem;
+        .dashBoardProfileDetailsImg {
+          flex-basis: 30%;
+          height: 10rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .dashBoardProfileDetailsContent {
+          flex-basis: 70%;
+          div {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            h4 {
+              flex-basis: 50%;
+            }
+          }
+        }
+      }
+    }
+    .dashBoardFeatures {
+      flex-basis: 50%;
+      display: flex;
+      justify-content: space-evenly;
+      .addToDashBoard {
+        flex-basis: 40%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        h1 {
+          font-weight: 600;
+        }
+        .addToDashBoardImg {
+          width: 5rem;
+          height: 5rem;
+          margin: auto;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .addLogo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.6rem;
+          p {
+            font-size: 1.5rem;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
