@@ -2,12 +2,18 @@ import React from "react";
 import LayOut from "../components/LayOut";
 import styles from "../styles/DashBoard.module.scss";
 import { BsFillPersonFill, BsPlusSquare } from "react-icons/bs";
+import { AiOutlineQrcode } from "react-icons/ai";
+import { TiTickOutline } from "react-icons/ti";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import profileImg from "../assets/profileImg.jpg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import teacher from "../assets/teacher.png";
+import invigilator from "../assets/invigilator.png";
 import addPerson from "../assets/addPerson.png";
+import exam from "../assets/exam.png";
+import qrCode from "../assets/qrCode.png";
+import examCorrection from "../assets/examCorrection.png";
 
 function DashBoard() {
   const menu = (
@@ -97,7 +103,7 @@ function DashBoard() {
             </div>
           </div>
           <div className={styles.dashBoardFeatures}>
-            <Link to={"/add-person/student"} className={styles.addToDashBoard}>
+            {/* <Link to={"/add-person/student"} className={styles.addToDashBoard}>
               <div>
                 <div className={styles.addToDashBoardImg}>
                   <img src={addPerson} alt="" />
@@ -119,6 +125,64 @@ function DashBoard() {
               <div className={styles.addLogo}>
                 <p>Add Teacher</p>
                 <BsPlusSquare size={24} color="black" />
+              </div>
+            </Link> */}
+            <Link to={"/create-exam"} className={styles.addToDashBoard}>
+              <div>
+                <div className={styles.addToDashBoardImg}>
+                  <img src={exam} alt="" />
+                </div>
+                <h1>Exam</h1>
+              </div>
+              <div className={styles.addLogo}>
+                <p>Create Exam</p>
+                <BsPlusSquare size={24} color="black" />
+              </div>
+            </Link>
+            <Link
+              to={"/create-supplementary"}
+              className={styles.addToDashBoard}
+            >
+              <div>
+                <div className={styles.addToDashBoardImg}>
+                  <img src={qrCode} alt="" />
+                </div>
+                <h1>Supplementry</h1>
+              </div>
+              <div className={styles.addLogo}>
+                <p>Create Supply</p>
+                <BsPlusSquare size={24} color="black" />
+              </div>
+            </Link>
+
+            <Link
+              to={"/invigilator-scan"}
+              className={styles.addToDashBoard}
+            >
+              <div>
+                <div className={styles.addToDashBoardImg}>
+                  <img src={invigilator} alt="" />
+                </div>
+                <h1>Invigilator</h1>
+              </div>
+              <div className={styles.addLogo}>
+                <p>Scan Supply</p>
+                <AiOutlineQrcode size={24} color="black" />
+              </div>
+            </Link>
+            <Link
+              to={"/create-supplementary"}
+              className={styles.addToDashBoard}
+            >
+              <div>
+                <div className={styles.addToDashBoardImg}>
+                  <img src={examCorrection} alt="" />
+                </div>
+                <h1>Correction</h1>
+              </div>
+              <div className={styles.addLogo}>
+                <p>Exam Correction</p>
+                <TiTickOutline size={24} color="black" />
               </div>
             </Link>
           </div>

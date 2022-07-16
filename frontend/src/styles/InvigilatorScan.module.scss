@@ -1,0 +1,28 @@
+.invigilatorScanContainer{
+    .invigilatorScannners{
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+        .scanBtn{
+            padding: 0.5rem;
+            background-color: #4747ff;
+            border: none;
+            outline: none;
+            width: 100%;
+            border-radius: 15px;
+            margin: 1rem auto;
+            cursor: pointer;
+            h3{
+                margin: 0;
+                color: aliceblue;
+                font-weight: 100;
+            }
+        }
+        .invigilatorScanner{
+            width: 20rem;
+            height: 20rem;
+            border: 1px solid;
+            
+        }
+    }
+}
