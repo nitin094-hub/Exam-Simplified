@@ -7,6 +7,11 @@ class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
         fields = '__all__'
+    
+class AnswerSheetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnswerSheet
+        fields = '__all__'
 
 class StudentAnswerSheetSerializer(serializers.ModelSerializer):
     student = serializers.SlugRelatedField(slug_field='id',queryset=Student.objects.all())
