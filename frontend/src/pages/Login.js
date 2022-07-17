@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import styles from "../styles/Login.module.scss";
 import api from "../api/UnProtectedApi";
+import {useSelector ,useDispatch} from "react-redux";
+import { setUserDetails } from '../redux/UserDetails';
+import {useNavigate} from "react-router-dom";
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loginData,setLoginData] = useState({
-    email:"",
+    username:"",
     password:""
   })
 
@@ -12,7 +17,12 @@ function Login() {
     e.preventDefault();
     try{
       const response = await api.post("api-token-auth/",loginData);
-      console.log(response);
+      dispatch(setUserDetails(response.data));
+      localStorage.setItem("isTeacher",response.data.is_professor);
+      localStorage.setItem("isAdmin",response.data.is_superuser);
+      localStorage.setItem("token",response.data.token);
+      localStorage.setItem("userId",response.data.user_id);
+      navigate("/");
     }
     catch(err){
       console.log(err.response);
@@ -25,10 +35,10 @@ function Login() {
       <div className={styles.loginContainer}>
             <h1>Login</h1>
             <form className={styles.loginForm} onSubmit={onSubmit}>
-                <input type="email" placeholder='Email Address' onChange={(e)=>{
+                <input type="text" placeholder='Username' onChange={(e)=>{
                   setLoginData({
                     ...loginData,
-                    email:e.target.value
+                    username:e.target.value
                   })
                 }} required/>
                 <input type="password" placeholder='Password' onChange={(e)=>{

@@ -2,9 +2,9 @@ import React from 'react'
 import styles from "../styles/SuccessMsg.module.scss";
 import successImg from "../assets/correct.png";
 
-function SuccessMsg({msg}) {
+function SuccessMsg({msg,show}) {
   return (
-    <div className={styles.msgContainer}>
+    <div className={styles.msgContainer} style={show ? {top:"10px"} : {top:"-70px"}}>
         <div className={styles.successImg}>
             <img src={successImg} alt="" />
         </div>
