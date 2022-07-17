@@ -20,6 +20,12 @@ class Professor(models.Model):
     address = models.CharField(max_length=50)
     nationality = models.CharField(max_length=50)
 
+    def save(self, *args, **kwargs):
+        self.user = CustomUser.objects.create_user(username=self.email.split('@')[0], password='abcdefg')
+        self.user.is_professor = True
+        self.user.save()
+        return super().save(*args, **kwargs)
+
 class Student(models.Model):
     id = models.UUIDField(primary_key=True, default= uuid.uuid4)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)   
