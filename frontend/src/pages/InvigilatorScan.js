@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import LayOut from "../components/LayOut";
 import { QrReader } from "react-qr-reader";
 import styles from "../styles/InvigilatorScan.module.scss";
+import { BsChevronRight } from 'react-icons/bs';
 
 function InvigilatorScan() {
   const [displayScan, setDisplayScan] = useState(false);
@@ -55,6 +56,10 @@ function InvigilatorScan() {
             </button>
           </div>
         </div>
+            <button className={styles.scanNxtBtn}>
+              <h3>Scan for Next Student</h3>
+              <BsChevronRight size={23} color="white"/>
+            </button>
       </div>
     </LayOut>
   );
