@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LayOut from "../components/LayOut";
 import styles from "../styles/CheckStudentDetails.module.scss";
 import { Select } from "antd";
 import student from "../assets/student.png";
+import api from "../api/ProtectedApi";
 const { Option } = Select;
 
 export default function CheckStudentDetails() {
+  const [studentDetailsList, setStudentDetailsList] = useState(null);
+
+  useEffect(() => {
+    let isApiSubscribed = true;
+    const fetch = async () => {
+      try {
+        const response = await api.get("users/student/");
+        setStudentDetailsList(response.data);
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+    fetch();
+    return () => {
+      isApiSubscribed = false;
+    };
+  }, []);
+
   return (
     <LayOut>
       <h1 style={{ padding: "1.6rem 0", textAlign: "center" }}>
@@ -34,43 +53,18 @@ export default function CheckStudentDetails() {
             <Option value="12">12</Option>
           </Select>
         </div>
-        <div className={styles.studentDetailsLists}>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
-          <div className={styles.studentDetailsList}>
-            <div className={styles.studentImg}>
-              <img src={student} alt="" />
-            </div>
-            <h2>Nitin Rajesh</h2>
-          </div>
+        <div className={styles.studentDetailsLists} style={studentDetailsList ? studentDetailsList.length<=6 ? {height:"auto"} : {height:"33rem"} : {}}>
+          {studentDetailsList &&
+            studentDetailsList.map((item) => {
+              return (
+                <div className={styles.studentDetailsList} key={item.id}>
+                  <div className={styles.studentImg}>
+                    <img src={student} alt="" />
+                  </div>
+                  <h2>{item.name}</h2>
+                </div>
+              );
+            })}
         </div>
       </div>
     </LayOut>

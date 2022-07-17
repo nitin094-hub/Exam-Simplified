@@ -16,8 +16,10 @@ import exam from "../assets/exam.png";
 import qrCode from "../assets/qrCode.png";
 import examCorrection from "../assets/examCorrection.png";
 import student from "../assets/student.png";
+import { useSelector } from "react-redux";
 
 function DashBoard() {
+  const userDetails = useSelector((state) => state.userDetails.value);
   const menu = (
     <Menu
       items={[
@@ -52,14 +54,17 @@ function DashBoard() {
     <LayOut>
       <div className={styles.dashBoardContainer}>
         <div className={styles.dashBoardHead}>
-          <h2>Exam Simplified Admin</h2>
+          <h2>
+            Exam Simplified{" "}
+            {localStorage.getItem("isAdmin") ? "Admin" : "Teacher"}
+          </h2>
           <div className={styles.dashBoardProfile}>
             <BsFillPersonFill size={23} color="black" />
             <div className={styles.dashBoardProfileDropDown}>
               <Dropdown overlay={menu} trigger={["click"]}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space>
-                    Admin
+                    {localStorage.getItem("isAdmin") ? "Admin" : "Teacher"}
                     <DownOutlined />
                   </Space>
                 </a>
@@ -105,88 +110,102 @@ function DashBoard() {
             </div>
           </div>
           <div className={styles.dashBoardFeatures}>
-            {/* <Link to={"/add-person/student"} className={styles.addToDashBoard}>
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={addPerson} alt="" />
-                </div>
-                <h1>Student</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Add Student</p>
-                <BsPlusSquare size={24} color="black" />
-              </div>
-            </Link>
-            <Link to={"/add-person/teacher"} className={styles.addToDashBoard}>
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={teacher} alt="" />
-                </div>
-                <h1>Teacher</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Add Teacher</p>
-                <BsPlusSquare size={24} color="black" />
-              </div>
-            </Link> */}
-            <Link to={"/create-exam"} className={styles.addToDashBoard}>
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={exam} alt="" />
-                </div>
-                <h1>Exam</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Create Exam</p>
-                <BsPlusSquare size={24} color="black" />
-              </div>
-            </Link>
-            <Link
-              to={"/create-supplementary"}
-              className={styles.addToDashBoard}
-            >
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={qrCode} alt="" />
-                </div>
-                <h1>Supplementry</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Create Supply</p>
-                <BsPlusSquare size={24} color="black" />
-              </div>
-            </Link>
+            {JSON.parse(localStorage.getItem("isAdmin")) && (
+              <>
+                <Link
+                  to={"/add-person/student"}
+                  className={styles.addToDashBoard}
+                >
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={addPerson} alt="" />
+                    </div>
+                    <h1>Student</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Add Student</p>
+                    <BsPlusSquare size={24} color="black" />
+                  </div>
+                </Link>
+                <Link
+                  to={"/add-person/teacher"}
+                  className={styles.addToDashBoard}
+                >
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={teacher} alt="" />
+                    </div>
+                    <h1>Teacher</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Add Teacher</p>
+                    <BsPlusSquare size={24} color="black" />
+                  </div>
+                </Link>
+              </>
+            )}
+            {JSON.parse(localStorage.getItem("isTeacher")) && (
+              <>
+                <Link to={"/create-exam"} className={styles.addToDashBoard}>
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={exam} alt="" />
+                    </div>
+                    <h1>Exam</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Create Exam</p>
+                    <BsPlusSquare size={24} color="black" />
+                  </div>
+                </Link>
+                <Link
+                  to={"/create-supplementary"}
+                  className={styles.addToDashBoard}
+                >
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={qrCode} alt="" />
+                    </div>
+                    <h1>Supplementry</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Create Supply</p>
+                    <BsPlusSquare size={24} color="black" />
+                  </div>
+                </Link>
 
-            <Link
-              to={"/invigilator-scan"}
-              className={styles.addToDashBoard}
-            >
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={invigilator} alt="" />
-                </div>
-                <h1>Invigilator</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Scan Supply</p>
-                <AiOutlineQrcode size={24} color="black" />
-              </div>
-            </Link>
-            <Link
-              to={"/teacher-correction"}
-              className={styles.addToDashBoard}
-            >
-              <div>
-                <div className={styles.addToDashBoardImg}>
-                  <img src={examCorrection} alt="" />
-                </div>
-                <h1>Correction</h1>
-              </div>
-              <div className={styles.addLogo}>
-                <p>Exam Correction</p>
-                <TiTickOutline size={24} color="black" />
-              </div>
-            </Link>
+                <Link
+                  to={"/invigilator-scan"}
+                  className={styles.addToDashBoard}
+                >
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={invigilator} alt="" />
+                    </div>
+                    <h1>Invigilator</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Scan Supply</p>
+                    <AiOutlineQrcode size={24} color="black" />
+                  </div>
+                </Link>
+                <Link
+                  to={"/teacher-correction"}
+                  className={styles.addToDashBoard}
+                >
+                  <div>
+                    <div className={styles.addToDashBoardImg}>
+                      <img src={examCorrection} alt="" />
+                    </div>
+                    <h1>Correction</h1>
+                  </div>
+                  <div className={styles.addLogo}>
+                    <p>Exam Correction</p>
+                    <TiTickOutline size={24} color="black" />
+                  </div>
+                </Link>
+              </>
+            )}
             <Link
               to={"/check-student-details"}
               className={styles.addToDashBoard}
