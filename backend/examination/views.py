@@ -8,6 +8,15 @@ from .serializers import AnswerSheetSerializer, ExamSerializer, StudentAnswerShe
 class AnswerSheetAPIView(generics.ListCreateAPIView):
     queryset = AnswerSheet.objects.all()
     serializer_class = AnswerSheetSerializer
+    def post(self, request, *args, **kwargs):
+        ans_sheet = []
+        for i in range(int(request.GET.get('n'))):
+            serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            ans_sheet.append(serializer.data)
+        return Response(ans_sheet)
 
 
 class StudentAnswersheetAPIview(generics.ListCreateAPIView):
@@ -15,5 +24,9 @@ class StudentAnswersheetAPIview(generics.ListCreateAPIView):
     serializer_class = StudentAnswerSheetSerializer
 
 class ExamAPIView(generics.ListCreateAPIView):
+    queryset = Exam.objects.all()
+    serializer_class = ExamSerializer
+
+class ExamUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exam.objects.all()
     serializer_class = ExamSerializer
