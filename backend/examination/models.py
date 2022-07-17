@@ -1,14 +1,14 @@
 import uuid
 from django.db import models
 
-from backend.users.models import Professor, Student
+from users.models import Professor, Student
 
 # Create your models here.
 
 class Exam(models.Model):
     name = models.CharField(max_length=30)
     subjext = models.CharField(max_length=30)
-    data = models.DateField()
+    date = models.DateField()
 
 class AnswerSheet(models.Model):
     qr_code = models.UUIDField(unique=True,default=uuid.uuid4)

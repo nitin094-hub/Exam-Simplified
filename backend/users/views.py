@@ -30,7 +30,7 @@ class StudentUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
 
 class ProfessorDetailsAPI(generics.ListCreateAPIView):
-    serializer_class = StudentSerializer
+    serializer_class = ProfessorSerializer
     queryset = Professor.objects.all()
 
 class ProfessorUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):

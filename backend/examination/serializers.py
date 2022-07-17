@@ -1,10 +1,15 @@
 from rest_framework import serializers
 
-from backend.examination.models import AnswerSheet, MarksObtained, StudentAnswersheet
-from backend.users.models import Student
+from examination.models import AnswerSheet, MarksObtained, StudentAnswersheet, Exam
+from users.models import Student 
+
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exam
+        fields = '__all__'
 
 class StudentAnswerSheetSerializer(serializers.ModelSerializer):
-    student = serializers.SlugRelatedField(slug_field='qr_code',queryset=Student.objects.all())
+    student = serializers.SlugRelatedField(slug_field='id',queryset=Student.objects.all())
     answersheet = serializers.SlugRelatedField(slug_field='qr_code',queryset=AnswerSheet.objects.all())
     class Meta:
         model = StudentAnswersheet
