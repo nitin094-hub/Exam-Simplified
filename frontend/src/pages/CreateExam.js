@@ -15,6 +15,7 @@ function CreateExam() {
         <form className={commonStyles.fillForm}>
           <input type="text" placeholder="Exam Name" required />
           <input type="date" placeholder="Exam Date" required />
+          <input type="text" placeholder="Subject" required />
           <button className={commonStyles.formBtn}>
             <h3>Create</h3>
           </button>

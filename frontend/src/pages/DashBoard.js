@@ -4,6 +4,7 @@ import styles from "../styles/DashBoard.module.scss";
 import { BsFillPersonFill, BsPlusSquare } from "react-icons/bs";
 import { AiOutlineQrcode } from "react-icons/ai";
 import { TiTickOutline } from "react-icons/ti";
+import { CgDetailsMore } from "react-icons/cg";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import profileImg from "../assets/profileImg.jpg";
@@ -14,6 +15,7 @@ import addPerson from "../assets/addPerson.png";
 import exam from "../assets/exam.png";
 import qrCode from "../assets/qrCode.png";
 import examCorrection from "../assets/examCorrection.png";
+import student from "../assets/student.png";
 
 function DashBoard() {
   const menu = (
@@ -171,7 +173,7 @@ function DashBoard() {
               </div>
             </Link>
             <Link
-              to={"/create-supplementary"}
+              to={"/teacher-correction"}
               className={styles.addToDashBoard}
             >
               <div>
@@ -183,6 +185,21 @@ function DashBoard() {
               <div className={styles.addLogo}>
                 <p>Exam Correction</p>
                 <TiTickOutline size={24} color="black" />
+              </div>
+            </Link>
+            <Link
+              to={"/check-student-details"}
+              className={styles.addToDashBoard}
+            >
+              <div>
+                <div className={styles.addToDashBoardImg}>
+                  <img src={student} alt="" />
+                </div>
+                <h1>Students</h1>
+              </div>
+              <div className={styles.addLogo}>
+                <p>Student Details</p>
+                <CgDetailsMore size={24} color="black" />
               </div>
             </Link>
           </div>

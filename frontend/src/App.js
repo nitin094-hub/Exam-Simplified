@@ -6,7 +6,8 @@ import AddPerson from "./pages/AddPerson";
 import CreateExam from "./pages/CreateExam";
 import CreateSupplementary from "./pages/CreateSupplementary";
 import InvigilatorScan from "./pages/InvigilatorScan";
-
+import TeacherCorrection from "./pages/TeacherCorrection";
+import CheckStudentDetails from "./pages/CheckStudentDetails";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,8 @@ function App() {
           <Route exact path="/create-exam" element={<CreateExam />} />
           <Route exact path="/create-supplementary" element={<CreateSupplementary/>} />
           <Route exact path="/invigilator-scan" element={<InvigilatorScan/>} />
+          <Route exact path="/teacher-correction" element={<TeacherCorrection/>} />
+          <Route exact path="/check-student-details" element={<CheckStudentDetails/>} />
         </Routes>
       </BrowserRouter>
     </div>
