@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import LayOut from "../components/LayOut";
 import styles from "../styles/CheckStudentDetails.module.scss";
 import { Select } from "antd";
@@ -7,7 +8,11 @@ import api from "../api/ProtectedApi";
 const { Option } = Select;
 
 export default function CheckStudentDetails() {
-  const [studentDetailsList, setStudentDetailsList] = useState(null);
+  const [studentDetailsList, setStudentDetailsList] = useState();
+  const [filterStudentData, setFilterStudentData] = useState({
+    studentName: "",
+    class: "",
+  });
 
   useEffect(() => {
     let isApiSubscribed = true;
@@ -25,6 +30,21 @@ export default function CheckStudentDetails() {
     };
   }, []);
 
+  useEffect(() => {
+    let isApiSubscribed = true;
+    const fetch = async () => {
+      const res = await api.get(
+        `users/filter-student?name=${filterStudentData.studentName}&class=${filterStudentData.class}`
+      );
+      setStudentDetailsList([...res.data]);
+    };
+
+    fetch();
+    return () => {
+      isApiSubscribed = false;
+    };
+  }, [filterStudentData]);
+
   return (
     <LayOut>
       <h1 style={{ padding: "1.6rem 0", textAlign: "center" }}>
@@ -33,12 +53,29 @@ export default function CheckStudentDetails() {
       <div className={styles.studentDetailsContainer}>
         <div className={styles.studentDetailsFilter}>
           <h1>Filter</h1>
-          <input type="text" placeholder="Name" required />
+          <input
+            type="text"
+            placeholder="Name"
+            required
+            onChange={(e) =>
+              setFilterStudentData({
+                ...filterStudentData,
+                studentName: e.target.value,
+              })
+            }
+            value={filterStudentData.studentName}
+          />
           <Select
             defaultValue="Select Class"
             style={{ width: "100%" }}
-            // onChange={handleChange}
+            onChange={(val) =>
+              setFilterStudentData({
+                ...filterStudentData,
+                class: val,
+              })
+            }
           >
+            <Option value=""></Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
             <Option value="3">3</Option>
@@ -53,16 +90,20 @@ export default function CheckStudentDetails() {
             <Option value="12">12</Option>
           </Select>
         </div>
-        <div className={styles.studentDetailsLists} style={studentDetailsList ? studentDetailsList.length<=6 ? {height:"auto"} : {height:"33rem"} : {}}>
+        <div className={styles.studentDetailsLists}>
           {studentDetailsList &&
             studentDetailsList.map((item) => {
               return (
-                <div className={styles.studentDetailsList} key={item.id}>
+                <Link
+                  to={`/check-student-details/${item.id}`}
+                  className={styles.studentDetailsList}
+                  key={item.id}
+                >
                   <div className={styles.studentImg}>
                     <img src={student} alt="" />
                   </div>
                   <h2>{item.name}</h2>
-                </div>
+                </Link>
               );
             })}
         </div>

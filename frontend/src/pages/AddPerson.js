@@ -60,7 +60,7 @@ function AddPerson() {
           show={success}
         />
       }
-      <div>
+      <div className={commonStyles.container}>
         <h1
           style={{
             padding: "0.5rem 0",

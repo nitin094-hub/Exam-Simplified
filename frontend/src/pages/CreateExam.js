@@ -20,7 +20,7 @@ function CreateExam() {
         subjext: "",
         date: "",
       });
-      setSuccess(true)
+      setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
       }, [3000]);
@@ -35,7 +35,7 @@ function CreateExam() {
     <>
       <Layout>
         {<SuccessMsg msg={`Succefully created Exam`} show={success} />}
-        <div>
+        <div className={commonStyles.container}>
           <h1 style={{ padding: "1.6rem 0", textAlign: "center" }}>
             Create Exam
           </h1>
