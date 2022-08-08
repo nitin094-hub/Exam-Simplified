@@ -1,9 +1,9 @@
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .models import AnswerSheet, Exam, StudentAnswersheet
+from .models import AnswerSheet, Exam, MarksObtained, StudentAnswersheet
 
-from .serializers import AnswerSheetSerializer, ExamSerializer, StudentAnswerSheetSerializer
+from .serializers import AnswerSheetSerializer, ExamSerializer, MarksObtainedSerializer, StudentAnswerSheetSerializer
 
 class AnswerSheetAPIView(generics.ListCreateAPIView):
     queryset = AnswerSheet.objects.all()
@@ -30,3 +30,7 @@ class ExamAPIView(generics.ListCreateAPIView):
 class ExamUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exam.objects.all()
     serializer_class = ExamSerializer
+
+class MarksObtainedAPIView(generics.ListCreateAPIView):
+    queryset = MarksObtained.objects.all()
+    serializer_class = MarksObtainedSerializer
