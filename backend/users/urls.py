@@ -1,4 +1,5 @@
 from django.urls import path
+from users.views import StudentFilterAPIView
 from users.views import ProfessorDetailsAPI, ProfessorUpdateDeleteAPIView
 from users.views import StudentUpdateDeleteAPIView
 
@@ -9,4 +10,5 @@ urlpatterns = [
     path('student/<int:pk>',StudentUpdateDeleteAPIView.as_view()),
     path('professor/',ProfessorDetailsAPI.as_view()),
     path('professor/<int:pk>',ProfessorUpdateDeleteAPIView.as_view()),
+    path('filter-student/',StudentFilterAPIView.as_view()),
 ]

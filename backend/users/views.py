@@ -36,3 +36,19 @@ class ProfessorDetailsAPI(generics.ListCreateAPIView):
 class ProfessorUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfessorSerializer
     queryset = Professor.objects.all()
+
+class StudentFilterAPIView(generics.GenericAPIView):
+    serializer_class = StudentSerializer
+
+    def get_queryset(self, name, _class):
+        queryset = Student.objects.all()
+        if name:
+            queryset = queryset.filter(name__istartswith = name)
+        if _class:
+             queryset = queryset.filter(st_class = _class)
+        return queryset
+    
+    def get(self, request):
+        data = self.get_queryset(request.GET.get('name'), request.GET.get('class'))
+        serializer_obj = self.serializer_class(data, many=True)
+        return Response(serializer_obj.data)
