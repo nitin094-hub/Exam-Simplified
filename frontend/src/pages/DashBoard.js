@@ -73,8 +73,7 @@ function DashBoard() {
               <Dropdown overlay={menu} trigger={["click"]}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space>
-                    {localStorage.getItem("isTeacher") && "Teacher"}
-                    {/* {localStorage.getItem("isAdmin") && "Admin"} */}
+                    {localStorage.getItem("isTeacher") ? "Teacher" : "Admin"}
                     <DownOutlined />
                   </Space>
                 </a>
