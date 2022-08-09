@@ -36,6 +36,7 @@ class ProfessorDetailsAPI(generics.ListCreateAPIView):
 class ProfessorUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfessorSerializer
     queryset = Professor.objects.all()
+    lookup_field = 'user'
 
 class StudentFilterAPIView(generics.GenericAPIView):
     serializer_class = StudentSerializer
