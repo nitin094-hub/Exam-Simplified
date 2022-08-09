@@ -9,6 +9,6 @@ urlpatterns = [
     path('student/',StudentDetailsAPI.as_view()),
     path('student/<uuid:pk>',StudentUpdateDeleteAPIView.as_view()),
     path('professor/',ProfessorDetailsAPI.as_view()),
-    path('professor/<int:pk>',ProfessorUpdateDeleteAPIView.as_view()),
+    path('professor/<int:user>',ProfessorUpdateDeleteAPIView.as_view()),
     path('filter-student/',StudentFilterAPIView.as_view()),
 ]
