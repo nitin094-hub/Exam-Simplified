@@ -125,40 +125,40 @@ function DashBoard() {
             </div>
           </div>
           <div className={styles.dashBoardFeatures}>
-            {JSON.parse(localStorage.getItem("isAdmin")) && (
-              <>
-                <Link
-                  to={"/add-person/student"}
-                  className={styles.addToDashBoard}
-                >
-                  <div>
-                    <div className={styles.addToDashBoardImg}>
-                      <img src={addPerson} alt="" />
-                    </div>
-                    <h1>Student</h1>
+            {/* {JSON.parse(localStorage.getItem("isAdmin")) && ( */}
+            <>
+              <Link
+                to={"/add-person/student"}
+                className={styles.addToDashBoard}
+              >
+                <div>
+                  <div className={styles.addToDashBoardImg}>
+                    <img src={addPerson} alt="" />
                   </div>
-                  <div className={styles.addLogo}>
-                    <p>Add Student</p>
-                    <BsPlusSquare size={24} color="black" />
+                  <h1>Student</h1>
+                </div>
+                <div className={styles.addLogo}>
+                  <p>Add Student</p>
+                  <BsPlusSquare size={24} color="black" />
+                </div>
+              </Link>
+              <Link
+                to={"/add-person/teacher"}
+                className={styles.addToDashBoard}
+              >
+                <div>
+                  <div className={styles.addToDashBoardImg}>
+                    <img src={teacher} alt="" />
                   </div>
-                </Link>
-                <Link
-                  to={"/add-person/teacher"}
-                  className={styles.addToDashBoard}
-                >
-                  <div>
-                    <div className={styles.addToDashBoardImg}>
-                      <img src={teacher} alt="" />
-                    </div>
-                    <h1>Teacher</h1>
-                  </div>
-                  <div className={styles.addLogo}>
-                    <p>Add Teacher</p>
-                    <BsPlusSquare size={24} color="black" />
-                  </div>
-                </Link>
-              </>
-            )}
+                  <h1>Teacher</h1>
+                </div>
+                <div className={styles.addLogo}>
+                  <p>Add Teacher</p>
+                  <BsPlusSquare size={24} color="black" />
+                </div>
+              </Link>
+            </>
+            {/* )} */}
             {JSON.parse(localStorage.getItem("isTeacher")) && (
               <>
                 <Link to={"/create-exam"} className={styles.addToDashBoard}>
